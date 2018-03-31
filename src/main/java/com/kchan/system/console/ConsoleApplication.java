@@ -1,4 +1,4 @@
-package com.fedex.plefs.system.console;
+package com.kchan.system.console;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

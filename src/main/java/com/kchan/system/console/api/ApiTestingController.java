@@ -1,7 +1,7 @@
-package com.fedex.plefs.system.console.api;
+package com.kchan.system.console.api;
 
-import com.fedex.plefs.system.console.domain.CloudOpsServers;
-import com.fedex.plefs.system.console.domain.server.Server;
+import com.kchan.system.console.domain.CloudOpsServers;
+import com.kchan.system.console.domain.server.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;

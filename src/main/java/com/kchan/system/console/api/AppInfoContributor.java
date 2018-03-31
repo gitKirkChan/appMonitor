@@ -1,6 +1,6 @@
-package com.fedex.plefs.system.console.api;
+package com.kchan.system.console.api;
 
-import com.fedex.plefs.system.console.domain.application.ApplicationProperties;
+import com.kchan.system.console.domain.application.ApplicationProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.info.Info;
 import org.springframework.boot.actuate.info.InfoContributor;

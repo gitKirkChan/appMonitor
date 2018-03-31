@@ -13,11 +13,14 @@ spring:
       indent_output: true
 
 
-maven:
-  project:
-    name: @project.name@
-    version: @project.version@
-    java: @java.version@
+#
+# Configurations used for application monitoring
+#
+
+project:
+  name: @project.name@
+  version: @project.version@
+  java: @java.version@
 
 cloudops:
   server:

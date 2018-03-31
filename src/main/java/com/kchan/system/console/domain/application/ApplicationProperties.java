@@ -1,4 +1,4 @@
-package com.fedex.plefs.system.console.domain.application;
+package com.kchan.system.console.domain.application;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,15 +9,15 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableConfigurationProperties
-@ConfigurationProperties("maven")
+@ConfigurationProperties
 public class ApplicationProperties {
 
     @Getter @Setter
-    private MavenProject project;
+    private Project project;
 
-    @ToString @Getter @Setter
-    public static class MavenProject {
-
+    @ToString
+    @Getter @Setter
+    public static class Project {
         private String name;
         private String version;
         private String java;

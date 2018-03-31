@@ -1,7 +1,7 @@
-package com.fedex.plefs.system.console.domain;
+package com.kchan.system.console.domain;
 
-import com.fedex.plefs.system.console.domain.server.Server;
-import com.fedex.plefs.system.console.domain.server.ServerConfiguration;
+import com.kchan.system.console.domain.server.Server;
+import com.kchan.system.console.domain.server.ServerConfiguration;
 import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

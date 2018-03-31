@@ -1,6 +1,6 @@
-package com.fedex.plefs.system.console.api;
+package com.kchan.system.console.api;
 
-import com.fedex.plefs.system.console.service.HealthCheck;
+import com.kchan.system.console.service.HealthCheck;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
-import static com.fedex.plefs.system.console.service.HealthCheck.*;
+import static com.kchan.system.console.service.HealthCheck.*;
 
 @Controller
 public class ServerMonitorController {

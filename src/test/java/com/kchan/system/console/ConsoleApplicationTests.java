@@ -1,4 +1,4 @@
-package com.fedex.plefs.system.console;
+package com.kchan.system.console;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

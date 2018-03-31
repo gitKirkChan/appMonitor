@@ -1,4 +1,4 @@
-package com.fedex.plefs.system.console.domain.server;
+package com.kchan.system.console.domain.server;
 
 import lombok.Getter;
 import lombok.Setter;
