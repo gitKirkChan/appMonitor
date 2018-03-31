@@ -40,4 +40,7 @@ public class ApiTestingController {
         return cloudOpsInfo.getTest();
     }
 
+    @RequestMapping("/servers")
+    @ResponseBody
+    public List<Server> servers() { return cloudOpsInfo.getAllServers(); }
 }
