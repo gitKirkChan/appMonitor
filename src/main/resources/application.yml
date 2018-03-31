@@ -1,0 +1,36 @@
+#Port used to expose actuator
+management:
+  server:
+    port: 8000
+  endpoints:
+    web:
+      exposure:
+        include: auditevents
+
+spring:
+  jackson:
+    serialization:
+      indent_output: true
+
+name: mainTestString
+
+version:
+  java: @java.version@
+  project: @project.version@
+  test: versionTest
+
+# Need to configure actuator at a secondary port so WSSO does not interfere
+
+cloudops:
+  server:
+    dev:
+      - level: L1
+        hostname: /
+        alias: L1-DEV-01
+      - level:    L1
+        hostname: /
+        alias:    L1-DEV-02
+    test:
+      - level:    L2
+        hostname: /
+        alias:    L2-TEST-01
