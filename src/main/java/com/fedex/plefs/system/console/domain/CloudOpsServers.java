@@ -23,7 +23,7 @@ public class CloudOpsServers {
     private List<Server> test;
     private List<Server> prod;
 
-    final Logger logger = LogManager.getLogger();
+    final Logger LOGGER = LogManager.getLogger();
 
     @Autowired
     public CloudOpsServers(ServerConfiguration confInfo) {
