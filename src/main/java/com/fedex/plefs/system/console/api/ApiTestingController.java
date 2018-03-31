@@ -28,20 +28,16 @@ public class ApiTestingController {
         return "Hello World!";
     }
 
-//    @RequestMapping("/app")
-//    @ResponseBody
-//    String appTest() {
-//        return info.getName();
-//    }
-//
-//    @RequestMapping("/versions")
-//    @ResponseBody
-//    ApplicationProperties.Version versions() { return info.getVersion(); }
-
-    @RequestMapping("/dev")
+    @RequestMapping("/servers/dev")
     @ResponseBody
     public List<Server> dev() {
         return cloudOpsInfo.getDev();
+    }
+
+    @RequestMapping("/servers/test")
+    @ResponseBody
+    public List<Server> test() {
+        return cloudOpsInfo.getTest();
     }
 
 }
