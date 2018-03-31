@@ -56,10 +56,10 @@ public class HealthCheck {
             return new Status(server, "UNKNOWN SERVER; STATUS UNKNOWN");
         }
         else if (server.getHostname().contains("2")) {
-            return new Status(server, "DOWN");
+            return new Status(server, "FAKED DOWN");
         }
         else {
-            return new Status(server, "UP");
+            return new Status(server, "FAKED UP");
         }
     }
 
