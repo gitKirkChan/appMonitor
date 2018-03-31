@@ -11,7 +11,7 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="com.fedex.plefs.system.console" level="debug" additivity="false">
+        <Logger name="com.kchan.system.console" level="debug" additivity="false">
             <AppenderRef ref="ConsoleAppender" />
         </Logger>
 
