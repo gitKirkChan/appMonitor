@@ -35,7 +35,6 @@ public class CloudOpsServers {
         for(Server s : confInfo.getServer()) {
 
             allServers.put(s.getAlias(), s);
-            logger.info(String.format("ADDING %s", s.toString()));
             switch (s.getType().toUpperCase()) {
                 case "DEV":     dev.add(s);
                                 break;
@@ -53,8 +52,6 @@ public class CloudOpsServers {
     }
 
     public boolean isServerAliasUnknown(String alias) {
-        logger.info(String.format("FOUND [%s]? %s", alias, this.allServers.containsKey(alias)));
-
         return !this.allServers.containsKey(alias);
     }
 }
