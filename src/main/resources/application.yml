@@ -18,22 +18,6 @@ version:
   java: @java.version@
   project: @project.version@
 
-# Need to configure actuator at a secondary port so WSSO does not interfere
-
-#cloudops:
-#  server:
-#    dev:
-#      - level: L1
-#        hostname: http://c000xx11.server.server.com:9999
-#        alias: L1-DEV-01
-#      - level:    L1
-#        hostname: http://c000xx12.server.server.com:9999
-#        alias:    L1-DEV-02
-#    test:
-#      - level:    L2
-#        hostname: http://c000xx22.server.server.com:9999
-#        alias:    L2-TEST-01
-
 cloudops:
   server:
     - level:    L1
