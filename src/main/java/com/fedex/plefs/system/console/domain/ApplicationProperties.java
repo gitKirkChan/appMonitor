@@ -1,4 +1,4 @@
-package com.fedex.plefs.system.console.configurations;
+package com.fedex.plefs.system.console.domain;
 
 import lombok.Getter;
 import lombok.Setter;

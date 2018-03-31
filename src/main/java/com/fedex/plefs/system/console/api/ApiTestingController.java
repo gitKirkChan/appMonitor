@@ -1,7 +1,7 @@
 package com.fedex.plefs.system.console.api;
 
-import com.fedex.plefs.system.console.configurations.ApplicationProperties;
-import com.fedex.plefs.system.console.configurations.CloudOpsProperties;
+import com.fedex.plefs.system.console.domain.ApplicationProperties;
+import com.fedex.plefs.system.console.domain.CloudOpsProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.stereotype.*;
