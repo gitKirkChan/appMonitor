@@ -6,11 +6,10 @@ import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-
-@Configuration
-@EnableConfigurationProperties
-@ConfigurationProperties
+// TODO Redo application properties after refactoring server
+@Component
 public class ApplicationProperties {
 
     @Getter @Setter

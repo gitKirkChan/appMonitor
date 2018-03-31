@@ -20,16 +20,36 @@ version:
 
 # Need to configure actuator at a secondary port so WSSO does not interfere
 
+#cloudops:
+#  server:
+#    dev:
+#      - level: L1
+#        hostname: http://c000xx11.server.server.com:9999
+#        alias: L1-DEV-01
+#      - level:    L1
+#        hostname: http://c000xx12.server.server.com:9999
+#        alias:    L1-DEV-02
+#    test:
+#      - level:    L2
+#        hostname: http://c000xx22.server.server.com:9999
+#        alias:    L2-TEST-01
+
 cloudops:
   server:
-    dev:
-      - level: L1
-        hostname: http://c000xx11.server.server.com:9999
-        alias: L1-DEV-01
-      - level:    L1
-        hostname: http://c000xx12.server.server.com:9999
-        alias:    L1-DEV-02
-    test:
-      - level:    L2
-        hostname: http://c000xx22.server.server.com:9999
-        alias:    L2-TEST-01
+    - level:    L1
+      type:     dev
+      hostname: http://c000xx11.dev.server.com:9999/actuator/health
+      alias:    L1-DEV-01
+    - level:    L1
+      type:     dev
+      hostname: http://c000xx12.dev.server.com:9999/actuator/health
+      alias:    L1-DEV-02
+    - level:    L2
+      type:     test
+      hostname: http://c000xx22.test.server.com:9999/actuator/health
+      alias:    L2-TEST-01
+
+    - level:    LOCALHOST
+      type:     dev
+      hostname: http://localhost:8000/actuator/health
+      alias:    myself, literally
