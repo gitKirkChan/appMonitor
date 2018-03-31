@@ -12,25 +12,26 @@ spring:
     serialization:
       indent_output: true
 
-name: mainTestString
 
-version:
-  java: @java.version@
-  project: @project.version@
+maven:
+  project:
+    name: @project.name@
+    version: @project.version@
+    java: @java.version@
 
 cloudops:
   server:
     - level:    L1
       type:     dev
-      hostname: http://c000xx11.dev.server.com:9999/actuator/health
+      hostname: http://c000xx11.dev.server.com:9999/app/actuator/health
       alias:    L1-DEV-01
     - level:    L1
       type:     dev
-      hostname: http://c000xx12.dev.server.com:9999/actuator/health
+      hostname: http://c000xx12.dev.server.com:9999/app/actuator/health
       alias:    L1-DEV-02
     - level:    L2
       type:     test
-      hostname: http://c000xx22.test.server.com:9999/actuator/health
+      hostname: http://c000xx22.test.server.com:9999/app/actuator/health
       alias:    L2-TEST-01
 
     - level:    LOCALHOST

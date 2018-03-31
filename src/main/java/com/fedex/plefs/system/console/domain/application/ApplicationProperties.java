@@ -1,4 +1,4 @@
-package com.fedex.plefs.system.console.domain;
+package com.fedex.plefs.system.console.domain.application;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,22 +6,20 @@ import lombok.ToString;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 
-// TODO Redo application properties after refactoring server
-@Component
+@Configuration
+@EnableConfigurationProperties
+@ConfigurationProperties("maven")
 public class ApplicationProperties {
 
     @Getter @Setter
-    private String name;
-
-    @Getter @Setter
-    private Version version;
+    private MavenProject project;
 
     @ToString @Getter @Setter
-    public static class Version {
+    public static class MavenProject {
+
+        private String name;
+        private String version;
         private String java;
-        private String project;
-        private String test;
     }
 }

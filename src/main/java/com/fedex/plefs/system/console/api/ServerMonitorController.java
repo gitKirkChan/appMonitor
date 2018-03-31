@@ -11,12 +11,12 @@ import java.util.List;
 import static com.fedex.plefs.system.console.service.HealthCheck.*;
 
 @Controller
-public class MonitorApplicationController {
+public class ServerMonitorController {
 
     private final HealthCheck healthCheck;
 
     @Autowired
-    public MonitorApplicationController(HealthCheck healthCheck) {
+    public ServerMonitorController(HealthCheck healthCheck) {
         this.healthCheck = healthCheck;
     }
 
