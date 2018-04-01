@@ -40,4 +40,4 @@ cloudops:
     - level:    LOCALHOST
       type:     dev
       hostname: http://localhost:8000/actuator/health
-      alias:    myself, literally
+      alias:    This application
