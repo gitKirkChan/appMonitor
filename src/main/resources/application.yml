@@ -12,6 +12,9 @@ spring:
     serialization:
       indent_output: true
 
+#lombok:
+#  anyConstructor:
+#    addConstructorProperties: true
 
 #
 # Configurations used for application monitoring
@@ -22,22 +25,36 @@ project:
   version: @project.version@
   java: @java.version@
 
+  env:
+    level: L1
+    type: dev
+
 cloudops:
   server:
     - level:    L1
       type:     dev
-      hostname: http://c000xx11.dev.server.com:9999/app/actuator/health
+      hostname: http://c000xx11.dev.server.com:9999/app
+      actuator: http://c000xx11.dev.server.com:4000/app
       alias:    L1-DEV-01
     - level:    L1
       type:     dev
-      hostname: http://c000xx12.dev.server.com:9999/app/actuator/health
+      hostname: http://c000xx12.dev.server.com:9999/app
+      actuator: http://c000xx12.dev.server.com:4000/app
       alias:    L1-DEV-02
     - level:    L2
       type:     test
-      hostname: http://c000xx22.test.server.com:9999/app/actuator/health
+      hostname: http://c000xx22.test.server.com:9999/app
+      actuator: http://c000xx22.test.server.com:4000/app
       alias:    L2-TEST-01
 
     - level:    LOCALHOST
       type:     dev
-      hostname: http://localhost:8000/actuator/health
+      hostname: http://localhost:8080
+      actuator: http://localhost:8000
       alias:    This application
+
+    - level:    LOCALHOST
+      type:     dev
+      hostname: http://localhost:9090
+      actuator: http://localhost:9000
+      alias:    local_test_app

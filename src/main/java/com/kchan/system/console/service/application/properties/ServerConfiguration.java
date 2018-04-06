@@ -1,4 +1,4 @@
-package com.kchan.system.console.domain.server;
+package com.kchan.system.console.service.application.properties;
 
 import lombok.Getter;
 import lombok.Setter;

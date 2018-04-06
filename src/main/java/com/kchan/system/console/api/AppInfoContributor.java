@@ -1,6 +1,6 @@
 package com.kchan.system.console.api;
 
-import com.kchan.system.console.domain.application.ApplicationProperties;
+import com.kchan.system.console.service.application.properties.ProjectInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.info.Info;
 import org.springframework.boot.actuate.info.InfoContributor;
@@ -12,21 +12,26 @@ import java.util.Map;
 @Component
 public class AppInfoContributor implements InfoContributor {
 
-    private ApplicationProperties applicationProperties;
+    private ProjectInfo projectInfo;
 
     @Autowired
-    public AppInfoContributor(ApplicationProperties applicationProperties) {
-        this.applicationProperties = applicationProperties;
+    public AppInfoContributor(ProjectInfo projectInfo) {
+        this.projectInfo = projectInfo;
     }
 
     @Override
     public void contribute(Info.Builder builder) {
 
         Map<String, String> projectProps = new HashMap<>();
-        projectProps.put("name", applicationProperties.getProject().getName());
-        projectProps.put("version", applicationProperties.getProject().getVersion());
+        projectProps.put("name", projectInfo.getProject().getName());
+        projectProps.put("version", projectInfo.getProject().getVersion());
+
+        Map<String, String> envProps = new HashMap<>();
+        envProps.put("level", projectInfo.getProject().getEnv().getLevel());
+        envProps.put("type", projectInfo.getProject().getEnv().getType());
 
         builder.withDetail("project", projectProps);
-        builder.withDetail("java", applicationProperties.getProject().getJava());
+        builder.withDetail("java", projectInfo.getProject().getJava());
+        builder.withDetail("env", envProps);
     }
 }

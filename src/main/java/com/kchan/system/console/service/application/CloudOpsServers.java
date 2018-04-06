@@ -1,7 +1,7 @@
-package com.kchan.system.console.domain;
+package com.kchan.system.console.service.application;
 
-import com.kchan.system.console.domain.server.Server;
-import com.kchan.system.console.domain.server.ServerConfiguration;
+import com.kchan.system.console.service.application.properties.Server;
+import com.kchan.system.console.service.application.properties.ServerConfiguration;
 import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -54,4 +54,6 @@ public class CloudOpsServers {
     public boolean isServerAliasUnknown(String alias) {
         return !this.allServers.containsKey(alias);
     }
+
+
 }

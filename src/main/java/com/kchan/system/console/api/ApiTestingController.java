@@ -1,7 +1,7 @@
 package com.kchan.system.console.api;
 
-import com.kchan.system.console.domain.CloudOpsServers;
-import com.kchan.system.console.domain.server.Server;
+import com.kchan.system.console.service.application.CloudOpsServers;
+import com.kchan.system.console.service.application.properties.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
@@ -28,19 +28,19 @@ public class ApiTestingController {
         return "Hello World!";
     }
 
-    @RequestMapping("/servers/dev")
+    @RequestMapping("/server/dev")
     @ResponseBody
     public List<Server> dev() {
         return cloudOpsInfo.getDev();
     }
 
-    @RequestMapping("/servers/test")
+    @RequestMapping("/server/test")
     @ResponseBody
     public List<Server> test() {
         return cloudOpsInfo.getTest();
     }
 
-    @RequestMapping("/servers")
+    @RequestMapping("/server")
     @ResponseBody
     public List<Server> servers() { return cloudOpsInfo.getAllServers(); }
 }
