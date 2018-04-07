@@ -7,6 +7,7 @@ import com.kchan.system.console.service.application.properties.Application;
 import com.kchan.system.console.properties.ProjectInfo;
 import com.kchan.system.console.api.entity.AppHealth;
 import com.kchan.system.console.service.http.GetRequest;
+import com.kchan.system.console.service.http.HttpError;
 import com.kchan.system.console.service.http.HttpResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,11 +34,11 @@ public class AppService {
 
     public List<AppHealth> showAllStatus() {
         List<AppHealth> response = new ArrayList<>();
-        List<Application> serversToCheck = cloudOpsInfo.getAllServers();
+        List<Application> appsToCheck = cloudOpsInfo.getAllInstances();
 
-        serversToCheck.forEach( server -> {
-            Health health = checkServerStatus(server);
-            response.add(new AppHealth(server, health));
+        appsToCheck.forEach( instances -> {
+            Health health = checkHealth(instances);
+            response.add(new AppHealth(instances, health));
         });
 
         return response;
@@ -45,21 +46,21 @@ public class AppService {
 
     public List<AppHealth> showDownStatus() {
         List<AppHealth> response = new ArrayList<>();
-        List<Application> serversToCheck = cloudOpsInfo.getAllServers();
+        List<Application> appsToCheck = cloudOpsInfo.getAllInstances();
 
-        serversToCheck.forEach( server -> {
-            Health health = checkServerStatus(server);
+        appsToCheck.forEach( instance -> {
+            Health health = checkHealth(instance);
 
             if (!health.getStatus().equalsIgnoreCase("UP")) {
-                response.add(new AppHealth(server, health));
+                response.add(new AppHealth(instance, health));
             }
         });
 
         return response;
     }
 
-    private Health checkServerStatus(Application application) {
-        if (cloudOpsInfo.isServerAliasUnknown(application.getAlias())) {
+    private Health checkHealth(Application application) {
+        if (cloudOpsInfo.isAliasUnknown(application.getAlias())) {
             return new Health("Incorrect application information");
         }
         // Real health checks
@@ -71,23 +72,21 @@ public class AppService {
     private Health sendHealthRequest(Application application) {
 
         String actuatorHealthUrl = String.format("%s/actuator/health", application.getActuator());
-        HttpResponse response = http.call(actuatorHealthUrl);
+        HttpResponse response;
 
-        if (response.getCode().equals("200")) {
+        try {
+            response = http.call(actuatorHealthUrl);
 
-            try {
-                ObjectMapper om = new ObjectMapper();
-                LOGGER.info(String.format("Response: [%s]", response.getMessage()));
-                // Use of object node because of deserialization issues
-                ObjectNode status = om.readValue(response.getMessage(), ObjectNode.class);
-                return new Health(status.get("status").asText());
-            } catch (IOException e) {
-                LOGGER.warn("Failed to map HTTP response to Java object [Health]");
-                return new Health("ERROR");
-            }
+            ObjectMapper om = new ObjectMapper();
+            // Use of object node because of deserialization issues when mapping to our Health class
+            ObjectNode status = om.readValue(response.getMessage(), ObjectNode.class);
+            return new Health(status.get("status").asText());
+        } catch (HttpError e) {
+            return new Health(e.getError());
+        } catch (IOException e) {
+            LOGGER.error("Failed to map HTTP response to Java object [Health]");
+            return new Health("SYSTEM ERROR");
         }
-
-        return new Health(response.getMessage());
     }
 
     private ProjectInfo getInfo(Application application) {

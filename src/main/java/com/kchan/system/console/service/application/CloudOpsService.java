@@ -17,7 +17,7 @@ import java.util.Map;
 @Getter
 public class CloudOpsService {
 
-    private Map<String, Application> allServers;
+    private Map<String, Application> allInstances;
 
     private List<Application> dev;
     private List<Application> test;
@@ -27,14 +27,14 @@ public class CloudOpsService {
 
     @Autowired
     public CloudOpsService(AppInstanceList confInfo) {
-        this.allServers = new HashMap<>();
+        this.allInstances = new HashMap<>();
         this.dev = new ArrayList<>();
         this.test = new ArrayList<>();
         this.prod = new ArrayList<>();
 
         for(Application s : confInfo.getApplication()) {
 
-            allServers.put(s.getAlias(), s);
+            allInstances.put(s.getAlias(), s);
             switch (s.getType().toUpperCase()) {
                 case "DEV":     dev.add(s);
                                 break;
@@ -47,12 +47,12 @@ public class CloudOpsService {
         }
     }
 
-    public List<Application> getAllServers() {
-        return new ArrayList<>(this.allServers.values());
+    public List<Application> getAllInstances() {
+        return new ArrayList<>(this.allInstances.values());
     }
 
-    public boolean isServerAliasUnknown(String alias) {
-        return !this.allServers.containsKey(alias);
+    public boolean isAliasUnknown(String alias) {
+        return !this.allInstances.containsKey(alias);
     }
 
 }

@@ -21,13 +21,13 @@ public class AppMonitorController {
 
     @RequestMapping("/system/health")
     @ResponseBody
-    public List<AppHealth> allServerHealthCheck() {
+    public List<AppHealth> findAllAppHealth() {
         return appService.showAllStatus();
     }
 
     @RequestMapping("/system/health/down")
     @ResponseBody
-    public List<AppHealth> downServerHealthCheck() {
+    public List<AppHealth> findDownApps() {
         return appService.showDownStatus();
     }
 }

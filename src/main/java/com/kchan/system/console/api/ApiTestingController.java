@@ -28,19 +28,19 @@ public class ApiTestingController {
         return "Hello World!";
     }
 
-    @RequestMapping("/server/dev")
+    @RequestMapping("/system/app/dev")
     @ResponseBody
     public List<Application> dev() {
         return cloudOpsInfo.getDev();
     }
 
-    @RequestMapping("/server/test")
+    @RequestMapping("/system/app/test")
     @ResponseBody
     public List<Application> test() {
         return cloudOpsInfo.getTest();
     }
 
-    @RequestMapping("/server")
+    @RequestMapping("/system")
     @ResponseBody
-    public List<Application> servers() { return cloudOpsInfo.getAllServers(); }
+    public List<Application> allInstances() { return cloudOpsInfo.getAllInstances(); }
 }

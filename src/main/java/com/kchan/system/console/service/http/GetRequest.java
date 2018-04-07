@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 
 @Service
@@ -17,8 +18,6 @@ public class GetRequest {
     private final static Logger LOGGER = LogManager.getLogger();
 
     public HttpResponse call(String target) {
-
-        LOGGER.info(String.format("Pinging %s", target));
 
         String responseCode = "";
         StringBuilder responseBody = new StringBuilder();
@@ -42,17 +41,24 @@ public class GetRequest {
             huc.disconnect();
 
             if(!huc.getContentType().equals("application/json;charset=UTF-8")) {
-                LOGGER.warn(String.format("Irregular content type returned: ['content type': %s, 'message': %s]", huc.getContentType(), responseBody.toString()));
+                LOGGER.warn(String.format("Irregular content type returned: ['content type': %s, 'message': %s]",
+                        huc.getContentType(), responseBody.toString()));
             }
 
+        /*
+            Even though HttpResponse and HttpError have the same properties, this is done to allow different handling
+            and remove any assumptions.
+         */
         } catch (MalformedURLException e) {
-            LOGGER.error(String.format("Bad URL: %s", target));
-            throw new HttpError(responseCode, responseBody.toString());
-
+            LOGGER.error(String.format("Malformed URL: [%s]", target));
+            throw new HttpError(responseCode, String.format("Malformed URL: [%s]", target));
+        } catch (SocketTimeoutException e) {
+            LOGGER.warn(String.format("HTTP call timed out: [%s]", target));
+            throw new HttpError("503", "SERVICE DOWN");
         } catch (IOException e) {
-            LOGGER.error(String.format("Network error: %s", e.toString()));
-            responseCode = "503";
-            responseBody.append("SERVICE DOWN");
+            LOGGER.warn(String.format("Network error hitting [%s]", target));
+            e.printStackTrace();
+            throw new HttpError("503", "SERVICE DOWN");
         }
 
         return new HttpResponse(responseCode, responseBody.toString());
