@@ -17,16 +17,17 @@ import java.util.Map;
 @Getter
 public class CloudOpsService {
 
+    private final Logger LOGGER = LogManager.getLogger();
+
     private Map<String, Application> allInstances;
 
     private List<Application> dev;
     private List<Application> test;
     private List<Application> prod;
 
-    final Logger LOGGER = LogManager.getLogger();
-
     @Autowired
     public CloudOpsService(AppInstanceList confInfo) {
+
         this.allInstances = new HashMap<>();
         this.dev = new ArrayList<>();
         this.test = new ArrayList<>();

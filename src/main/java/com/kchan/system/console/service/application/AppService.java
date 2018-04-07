@@ -2,6 +2,8 @@ package com.kchan.system.console.service.application;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.kchan.system.console.service.application.properties.ApplicationAccounts;
+import com.kchan.system.console.service.application.properties.AppGroup;
 import com.kchan.system.console.service.application.dto.Health;
 import com.kchan.system.console.service.application.properties.Application;
 import com.kchan.system.console.properties.ProjectInfo;
@@ -24,12 +26,18 @@ public class AppService {
     private final static Logger LOGGER = LogManager.getLogger();
 
     private final CloudOpsService cloudOpsInfo;
+    private final ApplicationAccounts apps;
     private final GetRequest http;
 
     @Autowired
-    public AppService(CloudOpsService cloudOpsInfo, GetRequest http) {
+    public AppService(CloudOpsService cloudOpsInfo, ApplicationAccounts apps, GetRequest http) {
         this.cloudOpsInfo = cloudOpsInfo;
+        this.apps = apps;
         this.http = http;
+    }
+
+    public List<AppGroup> getAllAppData() {
+        return this.apps.getApplicationAccountsList();
     }
 
     public List<AppHealth> showAllStatus() {

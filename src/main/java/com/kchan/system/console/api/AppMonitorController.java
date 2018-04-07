@@ -2,6 +2,8 @@ package com.kchan.system.console.api;
 
 import com.kchan.system.console.service.application.AppService;
 import com.kchan.system.console.api.entity.AppHealth;
+import com.kchan.system.console.service.application.CloudOpsService;
+import com.kchan.system.console.service.application.properties.AppGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,4 +32,16 @@ public class AppMonitorController {
     public List<AppHealth> findDownApps() {
         return appService.showDownStatus();
     }
+
+    @RequestMapping("/system/app")
+    @ResponseBody
+    public List<AppGroup> showAllAppConfigs() {
+        return this.appService.getAllAppData();
+    }
+
+//    @RequestMapping("/system/app/console")
+//    @ResponseBody
+//    public List<AppGroup> consoleInstances() {
+//        return this.appService.getAppInstances();
+//    }
 }

@@ -50,3 +50,18 @@ cloudops:
       hostname: http://localhost:9090
       actuator: http://localhost:9000
       alias:    local_test_app
+  new:
+    account:
+    - name: console
+      instance:
+      - level:    LOCALHOST
+        type:     dev
+        hostname: http://localhost:8080
+        actuator: http://localhost:8000
+        alias:    local-01
+
+      - level:    LOCALHOST
+        type:     dev
+        hostname: http://localhost:9090
+        actuator: http://localhost:9000
+        alias:    local-02
