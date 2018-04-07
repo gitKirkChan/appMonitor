@@ -30,7 +30,7 @@
 #   M2_HOME - location of maven2's installed home dir
 #   MAVEN_OPTS - parameters passed to the Java VM when running Maven
 #     e.g. to debug Maven itself, use
-#       set MAVEN_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=8000
+#       set MAVEN_OPTS=-Xdebug -Xrunjdwp:transport=dt_socket,application=y,suspend=y,address=8000
 #   MAVEN_SKIP_RC - flag to disable loading of mavenrc files
 # ----------------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ if [ -z "$M2_HOME" ] ; then
   while [ -h "$PRG" ] ; do
     ls=`ls -ld "$PRG"`
     link=`expr "$ls" : '.*-> \(.*\)$'`
-    if expr "$link" : '/.*' > /server/null; then
+    if expr "$link" : '/.*' > /application/null; then
       PRG="$link"
     else
       PRG="`dirname "$PRG"`/$link"

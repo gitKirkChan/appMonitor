@@ -1,7 +1,7 @@
 package com.kchan.system.console.api;
 
-import com.kchan.system.console.service.application.CloudOpsServers;
-import com.kchan.system.console.service.application.properties.Server;
+import com.kchan.system.console.service.application.CloudOpsService;
+import com.kchan.system.console.service.application.properties.Application;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +15,10 @@ public class ApiTestingController {
 //    @Autowired
 //    private ApplicationProperties info;
 
-    private final CloudOpsServers cloudOpsInfo;
+    private final CloudOpsService cloudOpsInfo;
 
     @Autowired
-    public ApiTestingController(CloudOpsServers cloudOpsInfo) {
+    public ApiTestingController(CloudOpsService cloudOpsInfo) {
         this.cloudOpsInfo = cloudOpsInfo;
     }
 
@@ -30,17 +30,17 @@ public class ApiTestingController {
 
     @RequestMapping("/server/dev")
     @ResponseBody
-    public List<Server> dev() {
+    public List<Application> dev() {
         return cloudOpsInfo.getDev();
     }
 
     @RequestMapping("/server/test")
     @ResponseBody
-    public List<Server> test() {
+    public List<Application> test() {
         return cloudOpsInfo.getTest();
     }
 
     @RequestMapping("/server")
     @ResponseBody
-    public List<Server> servers() { return cloudOpsInfo.getAllServers(); }
+    public List<Application> servers() { return cloudOpsInfo.getAllServers(); }
 }

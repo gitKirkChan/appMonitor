@@ -6,9 +6,12 @@ import lombok.ToString;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/*
+    Used to map and expose the metadata of CloudOps applications defined in the application.yml
+ */
 @ToString
 @Getter @Setter
-public class Server {
+public class Application {
 
     private String level;
     private String type;

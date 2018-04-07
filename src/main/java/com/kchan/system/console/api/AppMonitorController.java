@@ -19,13 +19,13 @@ public class AppMonitorController {
         this.appService = appService;
     }
 
-    @RequestMapping("/server/health")
+    @RequestMapping("/system/health")
     @ResponseBody
     public List<AppHealth> allServerHealthCheck() {
         return appService.showAllStatus();
     }
 
-    @RequestMapping("/server/health/down")
+    @RequestMapping("/system/health/down")
     @ResponseBody
     public List<AppHealth> downServerHealthCheck() {
         return appService.showDownStatus();

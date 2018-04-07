@@ -1,5 +1,6 @@
-package com.kchan.system.console.service.application.properties;
+package com.kchan.system.console.service.application.dto;
 
+import com.kchan.system.console.service.application.properties.Application;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -8,12 +9,14 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+/*
+    Used to map metadata of application instances from the application.yml
+ */
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties("cloudops")
-public class ServerConfiguration {
+public class AppInstanceList {
 
     @Getter @Setter
-    private List<Server> server;
+    private List<Application> application;
 }
-

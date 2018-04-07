@@ -1,4 +1,4 @@
-package com.kchan.system.console.service.application.properties;
+package com.kchan.system.console.properties;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,6 +7,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
+/*
+    Used to map and expose the metadata of this Spring container properties defined in the application.yml
+ */
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties

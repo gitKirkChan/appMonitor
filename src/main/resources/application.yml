@@ -12,14 +12,6 @@ spring:
     serialization:
       indent_output: true
 
-#lombok:
-#  anyConstructor:
-#    addConstructorProperties: true
-
-#
-# Configurations used for application monitoring
-#
-
 project:
   name: @project.name@
   version: @project.version@
@@ -30,21 +22,21 @@ project:
     type: dev
 
 cloudops:
-  server:
+  application:
     - level:    L1
       type:     dev
-      hostname: http://c000xx11.dev.server.com:9999/app
-      actuator: http://c000xx11.dev.server.com:4000/app
+      hostname: http://c000xx11.dev.application.com:9999/application
+      actuator: http://c000xx11.dev.application.com:4000/application
       alias:    L1-DEV-01
     - level:    L1
       type:     dev
-      hostname: http://c000xx12.dev.server.com:9999/app
-      actuator: http://c000xx12.dev.server.com:4000/app
+      hostname: http://c000xx12.dev.application.com:9999/application
+      actuator: http://c000xx12.dev.application.com:4000/application
       alias:    L1-DEV-02
     - level:    L2
       type:     test
-      hostname: http://c000xx22.test.server.com:9999/app
-      actuator: http://c000xx22.test.server.com:4000/app
+      hostname: http://c000xx22.test.application.com:9999/application
+      actuator: http://c000xx22.test.application.com:4000/application
       alias:    L2-TEST-01
 
     - level:    LOCALHOST

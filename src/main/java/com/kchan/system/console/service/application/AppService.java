@@ -3,8 +3,8 @@ package com.kchan.system.console.service.application;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.kchan.system.console.service.application.dto.Health;
-import com.kchan.system.console.service.application.properties.Server;
-import com.kchan.system.console.service.application.properties.ProjectInfo;
+import com.kchan.system.console.service.application.properties.Application;
+import com.kchan.system.console.properties.ProjectInfo;
 import com.kchan.system.console.api.entity.AppHealth;
 import com.kchan.system.console.service.http.GetRequest;
 import com.kchan.system.console.service.http.HttpResponse;
@@ -22,18 +22,18 @@ public class AppService {
 
     private final static Logger LOGGER = LogManager.getLogger();
 
-    private final CloudOpsServers cloudOpsInfo;
+    private final CloudOpsService cloudOpsInfo;
     private final GetRequest http;
 
     @Autowired
-    public AppService(CloudOpsServers cloudOpsInfo, GetRequest http) {
+    public AppService(CloudOpsService cloudOpsInfo, GetRequest http) {
         this.cloudOpsInfo = cloudOpsInfo;
         this.http = http;
     }
 
     public List<AppHealth> showAllStatus() {
         List<AppHealth> response = new ArrayList<>();
-        List<Server> serversToCheck = cloudOpsInfo.getAllServers();
+        List<Application> serversToCheck = cloudOpsInfo.getAllServers();
 
         serversToCheck.forEach( server -> {
             Health health = checkServerStatus(server);
@@ -45,7 +45,7 @@ public class AppService {
 
     public List<AppHealth> showDownStatus() {
         List<AppHealth> response = new ArrayList<>();
-        List<Server> serversToCheck = cloudOpsInfo.getAllServers();
+        List<Application> serversToCheck = cloudOpsInfo.getAllServers();
 
         serversToCheck.forEach( server -> {
             Health health = checkServerStatus(server);
@@ -58,19 +58,19 @@ public class AppService {
         return response;
     }
 
-    private Health checkServerStatus(Server server) {
-        if (cloudOpsInfo.isServerAliasUnknown(server.getAlias())) {
-            return new Health("Incorrect server information");
+    private Health checkServerStatus(Application application) {
+        if (cloudOpsInfo.isServerAliasUnknown(application.getAlias())) {
+            return new Health("Incorrect application information");
         }
         // Real health checks
         else {
-            return sendHealthRequest(server);
+            return sendHealthRequest(application);
         }
     }
 
-    private Health sendHealthRequest(Server server) {
+    private Health sendHealthRequest(Application application) {
 
-        String actuatorHealthUrl = String.format("%s/actuator/health", server.getActuator());
+        String actuatorHealthUrl = String.format("%s/actuator/health", application.getActuator());
         HttpResponse response = http.call(actuatorHealthUrl);
 
         if (response.getCode().equals("200")) {
@@ -90,9 +90,9 @@ public class AppService {
         return new Health(response.getMessage());
     }
 
-    private ProjectInfo getInfo(Server server) {
+    private ProjectInfo getInfo(Application application) {
 
-        String actuatorInfoUrl = String.format("%s/actuator/info", server.getHostname());
+        String actuatorInfoUrl = String.format("%s/actuator/info", application.getHostname());
         HttpResponse response = http.call(actuatorInfoUrl);
         ProjectInfo projectInfo;
 

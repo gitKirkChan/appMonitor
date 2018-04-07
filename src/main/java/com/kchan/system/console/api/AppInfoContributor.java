@@ -1,6 +1,6 @@
 package com.kchan.system.console.api;
 
-import com.kchan.system.console.service.application.properties.ProjectInfo;
+import com.kchan.system.console.properties.ProjectInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.info.Info;
 import org.springframework.boot.actuate.info.InfoContributor;
