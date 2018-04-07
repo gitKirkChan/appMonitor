@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Configuration
 @EnableConfigurationProperties
-@ConfigurationProperties("cloudops.new")
+@ConfigurationProperties("cloudops.application")
 @Setter
 public class ApplicationAccounts {
     private List<AppGroup> account;

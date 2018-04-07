@@ -23,34 +23,6 @@ project:
 
 cloudops:
   application:
-    - level:    L1
-      type:     dev
-      hostname: http://c000xx11.dev.application.com:9999/application
-      actuator: http://c000xx11.dev.application.com:4000/application
-      alias:    L1-DEV-01
-    - level:    L1
-      type:     dev
-      hostname: http://c000xx12.dev.application.com:9999/application
-      actuator: http://c000xx12.dev.application.com:4000/application
-      alias:    L1-DEV-02
-    - level:    L2
-      type:     test
-      hostname: http://c000xx22.test.application.com:9999/application
-      actuator: http://c000xx22.test.application.com:4000/application
-      alias:    L2-TEST-01
-
-    - level:    LOCALHOST
-      type:     dev
-      hostname: http://localhost:8080
-      actuator: http://localhost:8000
-      alias:    This application
-
-    - level:    LOCALHOST
-      type:     dev
-      hostname: http://localhost:9090
-      actuator: http://localhost:9000
-      alias:    local_test_app
-  new:
     account:
     - name: console
       instance:
