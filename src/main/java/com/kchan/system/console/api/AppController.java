@@ -2,7 +2,6 @@ package com.kchan.system.console.api;
 
 import com.kchan.system.console.service.application.AppService;
 import com.kchan.system.console.api.entity.AppHealth;
-import com.kchan.system.console.service.application.CloudOpsService;
 import com.kchan.system.console.service.application.properties.AppGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,12 +11,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-public class AppMonitorController {
+public class AppController {
 
     private final AppService appService;
 
     @Autowired
-    public AppMonitorController(AppService appService) {
+    public AppController(AppService appService) {
         this.appService = appService;
     }
 
@@ -42,6 +41,6 @@ public class AppMonitorController {
 //    @RequestMapping("/system/app/console")
 //    @ResponseBody
 //    public List<AppGroup> consoleInstances() {
-//        return this.appService.getAppInstances();
+//        return this.appService.getAppAccounts();
 //    }
 }

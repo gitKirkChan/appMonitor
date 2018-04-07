@@ -1,6 +1,5 @@
 package com.kchan.system.console.service.application.properties;
 
-import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -14,11 +13,11 @@ import java.util.List;
 @Configuration
 @EnableConfigurationProperties
 @ConfigurationProperties("cloudops.new")
-@Getter @Setter
+@Setter
 public class ApplicationAccounts {
     private List<AppGroup> account;
 
-    public List<AppGroup> getApplicationAccountsList() {
+    public List<AppGroup> getAppAccounts() {
         return this.account;
     }
 }

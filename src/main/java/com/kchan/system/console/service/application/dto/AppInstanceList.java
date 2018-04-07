@@ -11,6 +11,7 @@ import java.util.List;
 
 /*
     Used to map metadata of application instances from the application.yml
+    OLD
  */
 @Configuration
 @EnableConfigurationProperties

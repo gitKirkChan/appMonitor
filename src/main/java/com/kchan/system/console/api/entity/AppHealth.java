@@ -1,7 +1,7 @@
 package com.kchan.system.console.api.entity;
 
 import com.kchan.system.console.service.application.dto.Health;
-import com.kchan.system.console.service.application.properties.Application;
+import com.kchan.system.console.service.application.properties.Instance;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -16,9 +16,9 @@ public class AppHealth {
     private String hostname;
     private String status;
 
-    public AppHealth(Application application, Health health) {
-        this.appName = application.getAlias();
-        this.hostname = application.getHostname();
+    public AppHealth(Instance instance, Health health) {
+        this.appName = instance.getAlias();
+        this.hostname = instance.getHostname();
         this.status = health.getStatus();
     }
 }

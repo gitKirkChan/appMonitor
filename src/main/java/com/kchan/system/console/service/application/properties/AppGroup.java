@@ -5,11 +5,11 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Setter
 public class AppGroup {
 
-    @Getter
+    @Getter @Setter
     private String name;
+    @Setter
     private List<Instance> instance;
 
     public List<Instance> getInstances() {

@@ -58,10 +58,10 @@ cloudops:
         type:     dev
         hostname: http://localhost:8080
         actuator: http://localhost:8000
-        alias:    local-01
+        alias:    DEV-LOCAL_APP01
 
       - level:    LOCALHOST
         type:     dev
         hostname: http://localhost:9090
         actuator: http://localhost:9000
-        alias:    local-02
+        alias:    DEV-LOCAL_APP02
