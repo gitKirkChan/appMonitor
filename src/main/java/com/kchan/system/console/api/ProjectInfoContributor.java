@@ -10,12 +10,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class AppInfoContributor implements InfoContributor {
+public class ProjectInfoContributor implements InfoContributor {
 
     private ProjectInfo projectInfo;
 
     @Autowired
-    public AppInfoContributor(ProjectInfo projectInfo) {
+    public ProjectInfoContributor(ProjectInfo projectInfo) {
         this.projectInfo = projectInfo;
     }
 
